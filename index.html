@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nur Muhamad Saputra — Portofolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #080810;
+  --surface: rgba(255,255,255,0.03);
+  --glass: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.09);
+  --glass-hover: rgba(255,255,255,0.10);
+  --text: #f0ede8;
+  --muted: rgba(240,237,232,0.45);
+  --muted2: rgba(240,237,232,0.25);
+  --accent: #c9b97a;
+  --accent-dim: rgba(201,185,122,0.18);
+  --blue: #8ba8d4;
+  --blue-dim: rgba(139,168,212,0.15);
+  --green: #7eb89a;
+  --pink: #c38ba8;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-pill: 100px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── BG TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* Ambient blobs */
+.blob { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; }
+.blob-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(139,168,212,0.10) 0%, transparent 70%); top: -150px; right: -150px; }
+.blob-2 { width: 380px; height: 380px; background: radial-gradient(circle, rgba(201,185,122,0.08) 0%, transparent 70%); bottom: 200px; left: -120px; }
+.blob-3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(126,184,154,0.07) 0%, transparent 70%); bottom: -100px; right: 20%; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  background: rgba(8,8,16,0.65);
+  border-bottom: 1px solid var(--glass-border);
+}
+.nav-wrap {
+  max-width: 1000px; margin: 0 auto; padding: 0 28px;
+  height: 58px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.5px; color: var(--text); text-decoration: none; }
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 30px; }
+.nav-links a {
+  font-size: 13px; color: var(--muted); text-decoration: none;
+  letter-spacing: 0.4px; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; padding: 8px 20px; border-radius: var(--radius-pill);
+  background: var(--glass); color: var(--text);
+  border: 1px solid var(--glass-border); cursor: pointer;
+  transition: all 0.2s; backdrop-filter: blur(10px);
+  text-decoration: none;
+}
+.nav-cta:hover { background: var(--glass-hover); border-color: rgba(255,255,255,0.18); }
+.nav-mobile-toggle { display: none; background: none; border: none; color: var(--text); font-size: 20px; cursor: pointer; }
+
+/* ── LAYOUT ── */
+.wrap { max-width: 1000px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+
+/* ── SECTION LABEL ── */
+.s-tag { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+.s-title { font-family: 'Syne', sans-serif; font-size: clamp(24px, 3vw, 30px); font-weight: 700; letter-spacing: -0.5px; margin-bottom: 14px; }
+.s-sub { font-size: 15px; color: var(--muted); max-width: 540px; line-height: 1.7; }
+
+/* ── HERO ── */
+#home {
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 120px 0 80px;
+}
+.hero-inner { display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase;
+  color: var(--accent); padding: 6px 16px;
+  border: 1px solid rgba(201,185,122,0.25);
+  border-radius: var(--radius-pill); margin-bottom: 26px;
+  background: rgba(201,185,122,0.06);
+}
+.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: blink 2.2s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.8)} }
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 5.5vw, 62px);
+  font-weight: 800; line-height: 1.05; letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+.hero-title span { color: var(--blue); }
+.hero-sub { font-size: 16px; color: var(--muted); line-height: 1.75; max-width: 460px; margin-bottom: 36px; }
+.hero-sub strong { color: var(--text); font-weight: 500; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-main {
+  padding: 13px 28px; border-radius: var(--radius-pill);
+  background: var(--text); color: var(--bg);
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+  border: none; cursor: pointer; transition: all 0.2s; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-main:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-outline {
+  padding: 13px 28px; border-radius: var(--radius-pill);
+  background: transparent; color: var(--muted);
+  font-family: 'DM Sans', sans-serif; font-size: 14px;
+  border: 1px solid var(--glass-border); cursor: pointer; transition: all 0.2s;
+  text-decoration: none; display: inline-flex; align-items: center;
+}
+.btn-outline:hover { color: var(--text); border-color: rgba(255,255,255,0.2); background: var(--glass); }
+
+/* Hero photo */
+.hero-photo-wrap { position: relative; }
+.hero-photo-ring {
+  width: 220px; height: 220px; border-radius: 50%;
+  border: 1.5px solid var(--glass-border);
+  padding: 6px; position: relative;
+}
+.hero-photo-ring::before {
+  content: ''; position: absolute; inset: -12px; border-radius: 50%;
+  border: 1px dashed rgba(139,168,212,0.2);
+  animation: spin 20s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.hero-photo-ring::after {
+  content: ''; position: absolute;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--accent);
+  bottom: 12px; right: 6px;
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 3px rgba(201,185,122,0.2);
+}
+.hero-photo {
+  width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 800;
+  color: var(--blue); overflow: hidden;
+}
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.hero-univ {
+  margin-top: 14px; text-align: center;
+  font-size: 11px; color: var(--muted); letter-spacing: 0.5px;
+}
+.hero-univ strong { color: var(--text); display: block; font-size: 12px; }
+
+/* Hero stats inline */
+.hero-stats { display: flex; gap: 28px; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--glass-border); }
+.h-stat-num { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 700; line-height: 1; }
+.h-stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* ── ABOUT ── */
+#about { padding: 100px 0; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 48px; }
+.about-text p { color: var(--muted); line-height: 1.8; font-size: 15px; margin-bottom: 18px; }
+.about-text p strong { color: var(--text); font-weight: 500; }
+.about-cards { display: flex; flex-direction: column; gap: 12px; }
+.about-card {
+  padding: 20px 22px;
+  border: 1px solid var(--glass-border); border-radius: var(--radius);
+  background: var(--glass); backdrop-filter: blur(10px);
+  transition: border-color 0.2s, background 0.2s;
+}
+.about-card:hover { border-color: rgba(255,255,255,0.16); background: var(--glass-hover); }
+.about-card-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.about-card-val { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 600; }
+
+/* ── SKILLS ── */
+#skills { padding: 100px 0; }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+.skill-card {
+  padding: 26px 22px;
+  border: 1px solid var(--glass-border); border-radius: var(--radius);
+  background: var(--glass); backdrop-filter: blur(10px);
+  transition: transform 0.2s, border-color 0.2s;
+}
+.skill-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.16); }
+.skill-card-icon {
+  width: 38px; height: 38px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; margin-bottom: 16px;
+}
+.skill-card-icon.blue { background: var(--blue-dim); }
+.skill-card-icon.gold { background: var(--accent-dim); }
+.skill-card-icon.green { background: rgba(126,184,154,0.15); }
+.skill-card-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 14px; }
+.skill-list { list-style: none; }
+.skill-list li {
+  font-size: 13px; color: var(--muted); padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex; align-items: center; gap: 8px;
+}
+.skill-list li:last-child { border-bottom: none; }
+.skill-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--glass-border); flex-shrink: 0; }
+
+/* ── PORTFOLIO ── */
+#portfolio { padding: 100px 0; }
+.portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 48px; }
+.proj-card {
+  border: 1px solid var(--glass-border); border-radius: var(--radius);
+  background: var(--glass); backdrop-filter: blur(10px);
+  overflow: hidden; cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+  position: relative;
+}
+.proj-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.18); }
+.proj-card.featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1.2fr; }
+.proj-thumb {
+  aspect-ratio: 16/9; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.proj-card.featured .proj-thumb { aspect-ratio: auto; min-height: 220px; }
+.proj-thumb-bg {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.proj-thumb.c-red { background: linear-gradient(135deg, #1f080d 0%, #2d0f18 100%); }
+.proj-thumb.c-blue { background: linear-gradient(135deg, #08101f 0%, #0f1a2d 100%); }
+.proj-thumb.c-navy { background: linear-gradient(135deg, #080f1a 0%, #0a1220 100%); }
+.proj-thumb-text {
+  font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800; letter-spacing: -1px; position: relative; z-index: 1;
+}
+.proj-thumb.c-red .proj-thumb-text { color: #c38b9d; }
+.proj-thumb.c-blue .proj-thumb-text { color: var(--blue); }
+.proj-thumb.c-navy .proj-thumb-text { color: rgba(139,168,212,0.6); }
+.proj-body { padding: 22px 22px 20px; }
+.proj-card.featured .proj-body { display: flex; flex-direction: column; justify-content: center; padding: 32px; }
+.proj-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.tag {
+  font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase;
+  padding: 4px 12px; border-radius: var(--radius-pill);
+  border: 1px solid var(--glass-border); color: var(--muted2);
+  background: var(--surface);
+}
+.tag.accent { border-color: rgba(201,185,122,0.25); color: var(--accent); background: rgba(201,185,122,0.06); }
+.tag.blue { border-color: rgba(139,168,212,0.25); color: var(--blue); background: rgba(139,168,212,0.06); }
+.proj-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+.proj-card.featured .proj-title { font-size: 20px; }
+.proj-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
+.proj-link {
+  font-size: 12px; color: var(--muted); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: color 0.2s;
+}
+.proj-link:hover { color: var(--text); }
+.proj-arrow { font-size: 16px; transition: transform 0.2s; }
+.proj-card:hover .proj-arrow { transform: translate(2px, -2px); }
+
+/* ── CONTACT ── */
+#contact { padding: 100px 0 120px; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; margin-top: 48px; align-items: start; }
+.contact-info-list { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+.contact-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 20px;
+  border: 1px solid var(--glass-border); border-radius: var(--radius);
+  background: var(--glass); backdrop-filter: blur(10px);
+  text-decoration: none; color: var(--text);
+  transition: all 0.2s;
+}
+.contact-item:hover { border-color: rgba(255,255,255,0.16); background: var(--glass-hover); transform: translateX(4px); }
+.contact-item-icon {
+  width: 36px; height: 36px; border-radius: var(--radius-sm);
+  background: var(--blue-dim); display: flex; align-items: center;
+  justify-content: center; font-size: 16px; flex-shrink: 0;
+}
+.contact-item-label { font-size: 11px; color: var(--muted); letter-spacing: 0.5px; margin-bottom: 3px; }
+.contact-item-val { font-size: 14px; font-weight: 500; }
+
+/* Form */
+.contact-form { display: flex; flex-direction: column; gap: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group label { font-size: 12px; color: var(--muted); letter-spacing: 0.5px; }
+.form-group input, .form-group textarea {
+  padding: 12px 16px;
+  background: var(--glass); backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border); border-radius: var(--radius-sm);
+  color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 14px;
+  outline: none; transition: border-color 0.2s, background 0.2s;
+  resize: none;
+}
+.form-group input:focus, .form-group textarea:focus {
+  border-color: rgba(139,168,212,0.4);
+  background: rgba(139,168,212,0.05);
+}
+.form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted2); }
+.form-submit {
+  padding: 14px 32px; border-radius: var(--radius-pill);
+  background: var(--text); color: var(--bg);
+  font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+  border: none; cursor: pointer; transition: all 0.2s;
+  align-self: flex-start; display: flex; align-items: center; gap: 8px;
+}
+.form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--glass-border);
+  padding: 28px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  position: relative; z-index: 1;
+}
+footer span { color: var(--muted2); }
+
+/* ── DIVIDER ── */
+.section-divider {
+  height: 1px; background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+  margin: 0 28px;
+  position: relative; z-index: 1;
+}
+
+/* ── REVEAL ANIMATION ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-photo-wrap { display: none; }
+  .about-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .proj-card.featured { grid-column: auto; display: block; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .nav-mobile-toggle { display: block; }
+  .hero-stats { gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-wrap">
+    <a href="#home" class="nav-logo">NMS<span>.</span></a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Hubungi Saya</a>
+    <button class="nav-mobile-toggle">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge reveal">
+          <span class="hero-badge-dot" style="background: var(--green);"></span>
+          Mahasiswa Aktif
+        </div>
+        <h1 class="hero-title reveal">
+          Hi, Saya<br>
+          <span>Nur Muhamad</span><br>
+          Saputra
+        </h1>
+        <p class="hero-sub reveal">
+          Mahasiswa <strong>Ilmu Komunikasi</strong> di <strong>Universitas Mercu Buana</strong>
+          dengan fokus studi <strong>Digital Communication</strong>. Menggabungkan
+          analisis data, berpikir kritis, dan wawasan global.
+        </p>
+        <div class="hero-btns reveal">
+          <a href="#contact" class="btn-main">Hubungi Saya ↗</a>
+          <a href="#portfolio" class="btn-outline">Lihat Proyek</a>
+        </div>
+        <div class="hero-stats reveal">
+          <div>
+            <div class="h-stat-num">3+</div>
+            <div class="h-stat-label">Proyek Aktif</div>
+          </div>
+          <div>
+            <div class="h-stat-num" style="font-size:13px; line-height:1.3; padding-top:2px;">Universitas<br>Mercu Buana</div>
+            <div class="h-stat-label">Universitas</div>
+          </div>
+          <div>
+            <div class="h-stat-num" style="font-size:13px; line-height:1.3; padding-top:2px;">Digital<br>Communication</div>
+            <div class="h-stat-label">Fokus Studi</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo -->
+      <div class="hero-photo-wrap reveal reveal-delay-2">
+        <div class="hero-photo-ring">
+          <div class="hero-photo">
+            <img src="https://nielgap.github.io/Daniel-Personal-Branding-website/DANimg.png"
+              alt="Nur Muhamad Saputra"
+              onerror="this.style.display='none'; this.parentNode.textContent='NMS'">
+          </div>
+        </div>
+        <div class="hero-univ">
+          <strong>Universitas Mercu Buana</strong>
+          Ilmu Komunikasi
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="s-tag">Tentang Saya</div>
+      <div class="s-title">Latar Belakang</div>
+      <p class="s-sub">Mahasiswa aktif yang menjembatani komunikasi dan teknologi digital.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>
+          Saat ini saya adalah mahasiswa aktif jurusan <strong>Ilmu Komunikasi</strong> di
+          <strong>Universitas Mercu Buana</strong>. Ketertarikan saya pada dunia komunikasi
+          modern mendorong saya untuk mengambil spesialisasi di bidang <strong>Digital Communication</strong>,
+          di mana teknologi dan interaksi manusia bertemu.
+        </p>
+        <p>
+          Saya aktif mengeksplorasi bagaimana data dapat menceritakan kisah
+          (storytelling with data). Dengan memadukan kemampuan <strong>berpikir kritis</strong>
+          akademis dan kemahiran <strong>Bahasa Inggris</strong>, saya siap menghadapi
+          tantangan komunikasi di era global.
+        </p>
+      </div>
+      <div class="about-cards">
+        <div class="about-card reveal reveal-delay-1">
+          <div class="about-card-label">Universitas</div>
+          <div class="about-card-val">Universitas Mercu Buana</div>
+        </div>
+        <div class="about-card reveal reveal-delay-2">
+          <div class="about-card-label">Jurusan Utama</div>
+          <div class="about-card-val">Ilmu Komunikasi</div>
+        </div>
+        <div class="about-card reveal reveal-delay-3">
+          <div class="about-card-label">Fokus Studi</div>
+          <div class="about-card-val">Digital Communication</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="s-tag">Keahlian</div>
+      <div class="s-title">Keahlian & Kompetensi</div>
+      <p class="s-sub">Kombinasi wawasan akademis dan kemampuan praktis yang terus diasah selama perkuliahan.</p>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skill-card reveal">
+        <div class="skill-card-icon blue">🗣️</div>
+        <div class="skill-card-title">Bahasa & Komunikasi</div>
+        <ul class="skill-list">
+          <li>English (Professional Proficiency)</li>
+          <li>Bahasa Indonesia (Native)</li>
+          <li>Public Speaking</li>
+          <li>Academic Writing</li>
+        </ul>
+      </div>
+
+      <div class="skill-card reveal reveal-delay-1">
+        <div class="skill-card-icon gold">📊</div>
+        <div class="skill-card-title">Analisis Digital</div>
+        <ul class="skill-list">
+          <li>Google Analytics 4</li>
+          <li>Data Visualization</li>
+          <li>SEO & SEM Strategy</li>
+          <li>Social Media Analytics</li>
+        </ul>
+      </div>
+
+      <div class="skill-card reveal reveal-delay-2">
+        <div class="skill-card-icon green">🧠</div>
+        <div class="skill-card-title">Soft Skills</div>
+        <ul class="skill-list">
+          <li>Critical Thinking</li>
+          <li>Problem Solving</li>
+          <li>Strategic Planning</li>
+          <li>Team Collaboration</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="s-tag">Portofolio</div>
+      <div class="s-title">Proyek Akademik & Portofolio</div>
+      <p class="s-sub">Karya dan tugas terpilih yang menunjukkan penerapan teori komunikasi.</p>
+    </div>
+    <div class="portfolio-grid">
+
+      <!-- Featured -->
+      <div class="proj-card featured reveal">
+        <div class="proj-thumb c-red">
+          <div class="proj-thumb-bg"></div>
+          <div class="proj-thumb-text">SEOCIALTALK</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="tag accent">Event Organizer</span>
+            <span class="tag blue">Leadership</span>
+          </div>
+          <div class="proj-title">Ketua Panitia SEOCIALTALK 2025</div>
+          <p class="proj-desc">
+            Memimpin perencanaan dan eksekusi acara seminar nasional SEOCIALTALK 2025.
+            Mengoordinasikan seluruh divisi kepanitiaan untuk menghadirkan acara yang
+            berkesan dan berdampak.
+          </p>
+          <a href="#" class="proj-link">
+            Lihat Detail <span class="proj-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="proj-card reveal">
+        <div class="proj-thumb c-blue">
+          <div class="proj-thumb-bg"></div>
+          <div class="proj-thumb-text">RESEARCH</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="tag">Academic Research</span>
+          </div>
+          <div class="proj-title">Analisis Tren Pasar E-Commerce</div>
+          <p class="proj-desc">
+            Penelitian mendalam mengenai perilaku konsumen digital pasca-pandemi
+            dalam studi kasus Digital Komunikasi.
+          </p>
+          <a href="#" class="proj-link">Lihat Detail <span class="proj-arrow">↗</span></a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="proj-card reveal reveal-delay-1">
+        <div class="proj-thumb c-navy">
+          <div class="proj-thumb-bg"></div>
+          <div class="proj-thumb-text">CAMPAIGN</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="tag">Social Media</span>
+          </div>
+          <div class="proj-title">Strategi Kampanye Digital</div>
+          <p class="proj-desc">
+            Merancang strategi kampanye digital komprehensif untuk brand fiktif,
+            fokus pada SEO, analisis audiens, dan optimasi konten.
+          </p>
+          <a href="#" class="proj-link">Lihat Detail <span class="proj-arrow">↗</span></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="s-tag">Kontak</div>
+      <div class="s-title">Get in Touch</div>
+      <p class="s-sub">Mari terhubung untuk memperluas jaringan akademik dan profesional.</p>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-list">
+          <a href="/cdn-cgi/l/email-protection#1b7f7a75727e7a777f7a75727e772d232b5b7c767a727735787476" class="contact-item reveal">
+            <div class="contact-item-icon">✉️</div>
+            <div>
+              <div class="contact-item-label">Email</div>
+              <div class="contact-item-val"><span class="__cf_email__" data-cfemail="dabebbb4b3bfbbb6bebbb4b3bfb6ece2ea9abdb7bbb3b6f4b9b5b7">[email&#160;protected]</span></div>
+            </div>
+          </a>
+          <a href="https://wa.me/6287871344867" class="contact-item reveal reveal-delay-1" target="_blank">
+            <div class="contact-item-icon">📱</div>
+            <div>
+              <div class="contact-item-label">WhatsApp / Telepon</div>
+              <div class="contact-item-val">087871344867</div>
+            </div>
+          </a>
+          <a href="https://instagram.com/daniel.pertamax" class="contact-item reveal reveal-delay-2" target="_blank">
+            <div class="contact-item-icon">📸</div>
+            <div>
+              <div class="contact-item-label">Instagram</div>
+              <div class="contact-item-val">@daniel.pertamax</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nama Lengkap</label>
+            <input type="text" placeholder="Nama kamu">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="email@kamu.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Pesan / Keperluan</label>
+          <textarea rows="5" placeholder="Tulis pesanmu di sini..."></textarea>
+        </div>
+        <button class="form-submit">Kirim Pesan ↗</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>Nur Muhamad Saputra — Mahasiswa Ilmu Komunikasi | Digital Communication Enthusiast</div>
+  <div style="margin-top:8px;"><span>© 2026 All rights reserved.</span></div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav active highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) cur = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur
+        ? 'var(--text)' : '';
+    });
+  });
+
+  // Form submit feedback
+  document.querySelector('.form-submit').addEventList
